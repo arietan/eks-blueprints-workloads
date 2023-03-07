@@ -1,7 +1,7 @@
 labels:
   env: dev
-  name: mvp-app
-  namespace: mvp
+  name: team-mvp
+  namespace: team-mvp
 spec:
   destination:
     server: https://kubernetes.default.svc
