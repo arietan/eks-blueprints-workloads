@@ -5,10 +5,16 @@ resources:
 - namespace.yaml
 
 helmCharts:
-  - name: podinfo
-    repo: https://stefanprodan.github.io/podinfo
-    namespace: team-mvp
-    valuesInline:
-      service:
-        type: LoadBalancer
+- name: podinfo  # local chart, default path to "charts/"
+  namespace: team-mvp
+  valuesInline:
+    service:
+      type: LoadBalancer
+
+# - name: podinfo
+#   repo: https://stefanprodan.github.io/podinfo
+#   namespace: team-mvp
+#   valuesInline:
+#     service:
+#       type: LoadBalancer
 
