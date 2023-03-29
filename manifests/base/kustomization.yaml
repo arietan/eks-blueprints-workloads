@@ -6,5 +6,5 @@ resources:
 
 helmChartInflationGenerator:
 - name: podinfo
-  chartHome: charts/podinfo
+  chartHome: charts
   namespace: team-mvp
