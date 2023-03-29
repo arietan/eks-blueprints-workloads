@@ -5,6 +5,6 @@ resources:
 - namespace.yaml
 
 helmChartInflationGenerator:
-- name: podinfo
-  chartHome: charts
+# - name: podinfo
+- chartHome: charts/podinfo
   namespace: team-mvp
