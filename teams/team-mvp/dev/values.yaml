@@ -1,4 +1,0 @@
-labels:
-  env: dev
-  name: mvp-app
-  namespace: team-mvp
