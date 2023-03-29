@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/arietan/eks-blueprints-workloads
     targetRevision: main
-    path: teams/team-mvp/dev
+    path: manifests/overlays/dev
 
   # Thoses default values can be surcharged by Infrastructure as Code
   env: dev
