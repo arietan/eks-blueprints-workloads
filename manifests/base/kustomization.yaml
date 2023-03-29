@@ -4,7 +4,10 @@ namespace: team-mvp
 resources:
 - namespace.yaml
 
-helmChartInflationGenerator:
-# - name: podinfo
-- chartHome: charts/podinfo
-  # namespace: team-mvp
+helmCharts:
+  - name: podinfo
+    repo: https://stefanprodan.github.io/podinfo
+    namespace: team-mvp
+    valuesInline:
+      service:
+        type: LoadBalancer
