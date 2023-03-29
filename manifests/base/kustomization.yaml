@@ -11,3 +11,4 @@ helmCharts:
     valuesInline:
       service:
         type: LoadBalancer
+
