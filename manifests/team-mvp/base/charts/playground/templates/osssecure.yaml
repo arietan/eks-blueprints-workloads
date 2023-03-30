@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: bluegreen-demo-preview
   labels:
-    app: bluegreen-demo
+    app: osssecure
 spec:
   ports:
     - port: 80
@@ -37,7 +37,7 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: bluegreen-demo
+    app: osssecure
 
 ---
 apiVersion: v1
@@ -45,7 +45,7 @@ kind: Service
 metadata:
   name: bluegreen-demo
   labels:
-    app: bluegreen-demo
+    app: osssecure
 spec:
   ports:
   - port: 80
@@ -53,4 +53,4 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: bluegreen-demo
+    app: osssecure
