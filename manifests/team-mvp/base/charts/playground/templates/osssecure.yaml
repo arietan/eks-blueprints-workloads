@@ -1,10 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: simple-rollout
+  name: osssecure
   namespace: team-mvp
 spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: osssecure
   template:
+    metadata:
+      labels:
+        app: osssecure
     spec:
       containers:
       - name: webserver-simple
