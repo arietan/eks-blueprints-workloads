@@ -5,10 +5,5 @@ resources:
 - namespace.yaml
 
 helmCharts:
-- name: podinfo  # local chart, default path to "charts/"
-  namespace: team-mvp
-  # valuesInline:
-  #   service:
-  #     type: LoadBalancer
-- name: playground
+- name: policy-playground # local chart, default path to "charts/"
   namespace: team-mvp
