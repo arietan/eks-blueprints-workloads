@@ -2,26 +2,24 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: platform-istio
+  namespace: argocd
   labels:
-    sourced.io/tier: dev
-    sourced.io/tenant: platform
-    sourced.io/kind: application
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    name: ''
-    namespace: istio-system
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: ''
-    repoURL: 'https://istio-release.storage.googleapis.com/charts'
-    targetRevision: 1.17.1
-    chart: istiod
   project: default
+  destination:
+    namespace: istio-system
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: manifests/platform-istio/dev
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
