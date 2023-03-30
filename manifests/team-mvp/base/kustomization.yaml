@@ -7,14 +7,8 @@ resources:
 helmCharts:
 - name: podinfo  # local chart, default path to "charts/"
   namespace: team-mvp
-  valuesInline:
-    service:
-      type: LoadBalancer
-
-# - name: podinfo
-#   repo: https://stefanprodan.github.io/podinfo
-#   namespace: team-mvp
-#   valuesInline:
-#     service:
-#       type: LoadBalancer
-
+  # valuesInline:
+  #   service:
+  #     type: LoadBalancer
+- name: playground
+  namespace: team-mvp
