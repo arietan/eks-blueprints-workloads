@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-compliance
+  name: platform-tools
   namespace: argocd
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
@@ -10,12 +10,12 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: platform-compliance
+    namespace: platform-tools
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: manifests/platform-compliance/overlays/dev
+    path: manifests/platform-tools/overlays/dev
     kustomize:
       {{- toYaml .Values | nindent 6 }}
   syncPolicy:
