@@ -5,4 +5,4 @@ resources:
 - opa-constraints.yaml # OPA constraints - apply the actual constrains using the templates above
 - kyverno-check-image.yaml  # Kyverno policy - validate image signature
 - k8s-networkpolicies.yaml # Kubernetes built-in Network Policy
-- istio-policies.yaml # Kubernetes built-in Network Policy
+- istio-policies.yaml # Istio Policies L7
