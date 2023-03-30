@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-istio
+  name: platform-istio-base
   labels:
     sourced.io/tier: dev
     sourced.io/tenant: platform
