@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-tools
+  name: platform-kyverno
   namespace: argocd
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
@@ -10,14 +10,15 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: platform-tools
+    namespace: platform-kyverno
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: manifests/platform-tools/overlays/dev
-    kustomize:
-      {{- toYaml .Values | nindent 6 }}
+    path: manifests/platform-kyverno/dev
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
   syncPolicy:
     automated:
       prune: true
