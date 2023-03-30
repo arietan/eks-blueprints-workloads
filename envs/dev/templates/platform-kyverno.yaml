@@ -5,8 +5,8 @@ metadata:
   namespace: argocd
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  # finalizers:
+  # - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   destination:
@@ -19,10 +19,6 @@ spec:
     helm:
       values: |
         {{- toYaml .Values | nindent 8 }}
-  # source:
-  #   chart: kyverno
-  #   repoURL: https://kyverno.github.io/kyverno
-  #   targetRevision: 2.6.0
   syncPolicy:
     automated:
       prune: true
