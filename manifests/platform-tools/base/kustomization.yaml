@@ -5,4 +5,5 @@ resources:
 - constraints.yaml # apply the actual constrains using the templates above
 
 helmCharts:
-- name: kyverno
+- name: kyverno  # GOTCHA - this is an umbrella chart (empty chart with links to other charts via dependencies), need to explicitly use "helm" instead of "kustomize with helm inflator"
+ 
