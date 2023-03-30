@@ -1,0 +1,12 @@
+apiVersion: tf.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    - filename: creds.conf
+      source: Secret
+      secretRef:
+        namespace: crossplane-system
+        name: aws-creds
+        key: creds
