@@ -14,8 +14,8 @@ spec:
         - resources:
             kinds:
               - Pod
-            # namespaces:
-            #   - "secure"
+            namespaces:
+              - "team-mvp"
       verifyImages:
       - imageReferences:
         - "docker.io/todaywasawesome/colors:*"
