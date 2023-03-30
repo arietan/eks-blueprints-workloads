@@ -17,3 +17,40 @@ spec:
       containers:
       - name: webserver-simple
         image: todaywasawesome/colors:v0.0.1-secure #Available releases are blue, purple, yellow, v0.0.1-test (signed), v1.0.1-secure (signed)
+  strategy:
+    blueGreen:
+      autoPromotionEnabled: false
+      activeService: bluegreen-demo
+      previewService: bluegreen-demo-preview
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bluegreen-demo-preview
+  labels:
+    app: bluegreen-demo
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: bluegreen-demo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bluegreen-demo
+  labels:
+    app: bluegreen-demo
+spec:
+  ports:
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app: bluegreen-demo
