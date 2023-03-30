@@ -16,7 +16,9 @@ spec:
     spec:
       containers:
       - name: webserver-simple
-        image: todaywasawesome/colors:v0.0.1-secure #Available releases are blue, purple, yellow, v0.0.1-test (signed), v1.0.1-secure (signed)
+        image: docker.io/todaywasawesome/colors:master-5a1a370 #Available releases are blue, purple, yellow, v0.0.1-test (signed), v1.0.1-secure (signed)
+        ports:
+        - containerPort: 8080
   strategy:
     blueGreen:
       autoPromotionEnabled: false
@@ -33,7 +35,7 @@ metadata:
     app: osssecure
 spec:
   ports:
-    - port: 80
+    - port: 8080
       targetPort: http
       protocol: TCP
       name: http
@@ -50,7 +52,7 @@ metadata:
     app: osssecure
 spec:
   ports:
-  - port: 80
+  - port: 8080
     targetPort: http
     protocol: TCP
     name: http
