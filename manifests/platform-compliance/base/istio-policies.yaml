@@ -1,0 +1,42 @@
+---
+# isolate traffic within namespace, cross namespace traffic is denied
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all-ns
+  namespace: istio-system
+spec:
+  {}
+
+---
+# allow traffic to istio-ingress
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-to-istio-ingress-namespace
+  namespace: istio-ingress
+spec:
+  selector:
+    matchLabels:
+      istio: ingress
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        methods: ["*"]
+
+---
+# allow traffic from ns istio-ingress to ns team-mvp
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-from-istio-ingress-namespace
+  namespace: team-mvp
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["istio-ingress"]
+    - source:
+        principals: ["cluster.local/ns/istio-ingress/sa/istio-ingress"]

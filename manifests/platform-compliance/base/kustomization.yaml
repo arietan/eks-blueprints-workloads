@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - github.com/open-policy-agent/gatekeeper-library/library  # OPA Gatekeeper - apply all template
-- constraints.yaml # apply the actual constrains using the templates above
-- check-image.yaml  # Kyverno policy - validate image signature
+- opa-constraints.yaml # OPA constraints - apply the actual constrains using the templates above
+- kyverno-check-image.yaml  # Kyverno policy - validate image signature
+- k8s-networkpolicies.yaml # Kubernetes built-in Network Policy

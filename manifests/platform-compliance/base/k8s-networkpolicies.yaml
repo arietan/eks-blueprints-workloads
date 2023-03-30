@@ -1,0 +1,21 @@
+# SECURITY IS TO BE RELAXED AT L4, MORE CONTROL AT L7 ISTIO POLICIES - disable all policies for demo purpose
+# ---
+# # Deny all ingress traffic
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: default-deny-ingress
+# spec:
+#   podSelector: {}
+#   policyTypes:
+#   - Ingress
+# ---
+# # Deny all egress traffic
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: default-deny-egress
+# spec:
+#   podSelector: {}
+#   policyTypes:
+#   - Egress
