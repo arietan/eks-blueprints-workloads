@@ -19,6 +19,7 @@ spec:
         image: docker.io/todaywasawesome/colors:v1.0.1-secure #Available releases are blue, purple, yellow, v0.0.1-test (signed), v1.0.1-secure (signed)
         ports:
         - containerPort: 8080
+          protocol: TCP
   strategy:
     blueGreen:
       autoPromotionEnabled: false
