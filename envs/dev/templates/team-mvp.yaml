@@ -1,33 +1,25 @@
----
-# Source: mvp-argocd-app/templates/team-mvp.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: team-mvp
   namespace: argocd
   labels:
-    env: dev
-    name: team-mvp
-    namespace: team-mvp
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   destination:
     namespace: team-mvp
-    server: https://kubernetes.default.svc
+    server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/arietan/eks-blueprints-workloads
-    targetRevision: main
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
     path: manifests/team-mvp/overlays/dev
     kustomize:
-      labels:
-        env: dev
-        name: team-mvp
-        namespace: team-mvp
+      {{- toYaml .Values | nindent 6 }}
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
-    # syncOptions:
-    # - CreateNamespace=true
+    syncOptions:
+    - CreateNamespace=true
