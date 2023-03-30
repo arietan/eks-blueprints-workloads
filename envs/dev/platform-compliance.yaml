@@ -1,0 +1,33 @@
+---
+# Source: mvp-argocd-app/templates/platform-compliance.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-compliance
+  namespace: argocd
+  labels:
+    env: dev
+    name: platform-compliance
+    namespace: platform-compliance
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: platform-compliance
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/arietan/eks-blueprints-workloads
+    targetRevision: main
+    path: manifests/platform-compliance/overlays/dev
+    kustomize:
+      labels:
+        env: dev
+        name: platform-compliance
+        namespace: platform-compliance
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    # syncOptions:
+    # - CreateNamespace=true
