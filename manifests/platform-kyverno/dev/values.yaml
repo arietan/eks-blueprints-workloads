@@ -5,4 +5,4 @@ policies:
   enable: true
 
 reporter:
-  enable: true
+  enable: false
