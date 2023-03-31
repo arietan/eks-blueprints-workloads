@@ -17,12 +17,3 @@ spec:
     provider "aws" {
       credentials = "creds.conf"
     }
-
-    // Modules _must_ use remote state. The provider does not persist state.
-    terraform {
-      backend "kubernetes" {
-        secret_suffix     = "providerconfig-default"
-        namespace         = "upbound-system"
-        in_cluster_config = true
-      }
-    }

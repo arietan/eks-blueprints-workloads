@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-kiali
+  namespace: argocd
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: istio-system
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: manifests/platform-kiali/dev
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
+      parameters:
+        - name: auth.strategy
+          value: 'anonymous'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

@@ -1,7 +1,7 @@
 apiVersion: tf.upbound.io/v1beta1
 kind: Workspace
 metadata:
-  name: example-bucket-inline
+  name: example-inline
 spec:
   forProvider:
     source: Inline
